@@ -22,6 +22,21 @@ class User extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function home()
+    {
+        $data['title'] = 'Home';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->model('Admin_model', 'admin');
+
+        $data['clothing'] = $this->admin->getClothing();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/home', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function edit()
     {
         $data['title'] = 'Edit Profile';

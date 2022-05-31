@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; TES Team <?= date('Y'); ?></span>
+            <span>Copyright &copy; WEBPROG Team <?= date('Y'); ?></span>
         </div>
     </div>
 </footer>
@@ -76,3 +76,9 @@
 </body>
 
 </html>
+
+<style>
+    body {
+        padding-top: 70px;
+    }
+</style>

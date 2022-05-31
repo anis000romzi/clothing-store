@@ -7,6 +7,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->model('Admin_model', 'admin');
         is_logged_in();
     }
 
@@ -15,6 +16,11 @@ class Admin extends CI_Controller
         $data['title'] = 'Overview';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+        $data['member'] = $this->admin->getUser();
+        $data['clothing'] = $this->admin->getClothing();
+        $data['num_user'] = $this->db->get('user')->num_rows();
+        $data['num_item'] = $this->db->get('clothing')->num_rows();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -22,64 +28,126 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function role()
+    public function item()
     {
-        $data['title'] = 'Role';
+        $data['title'] = 'Item Management';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['clothing'] = $this->admin->getClothing();
+        $data['type'] = $this->db->get('type')->result_array();
+
+        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('type', 'Type', 'required');
+        $this->form_validation->set_rules('price', 'Price', 'required');
+        $this->form_validation->set_rules('stock', 'Stock', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('admin/item', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'name' => $this->input->post('name'),
+                'type_id' => $this->input->post('type'),
+                'price' => $this->input->post('price'),
+                'stock' => $this->input->post('stock')
+            ];
+            $this->db->insert('clothing', $data);
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success" role="alert">
+                     New item added
+                </div>'
+            );
+            redirect('admin/item');
+        }
+    }
+
+    public function edititem($item_id)
+    {
+        $data['title'] = 'Edit Item';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['clothing'] = $this->admin->getClothingById($item_id);
+        $data['type'] = $this->db->get('type')->result_array();
+
+        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('price', 'Price', 'required');
+        $this->form_validation->set_rules('type', 'Type', 'required');
+        $this->form_validation->set_rules('stock', 'Stock', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('admin/edititem', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'name' => $this->input->post('name'),
+                'price' => $this->input->post('price'),
+                'type_id' => $this->input->post('type'),
+                'stock' => $this->input->post('stock')
+            ];
+
+            $this->db->where('id', $item_id);
+            $this->db->update('clothing', $data);
+            redirect('admin/item');
+        }
+    }
+
+    public function deleteitem($delete_item_id)
+    {
+        $this->db->delete('clothing', ['id' => $delete_item_id]);
+        redirect('admin/item');
+    }
+
+    public function user()
+    {
+        $data['title'] = 'User Management';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['member'] = $this->admin->getUserById($data['user']['id']);
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/member', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function editusers($user_id)
+    {
+        $data['title'] = 'Edit User';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['role'] = $this->db->get('user_role')->result_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('admin/role', $data);
-        $this->load->view('templates/footer');
-    }
+        $this->form_validation->set_rules('role_id', 'Role', 'required');
 
-    public function roleaccess($role_id)
-    {
-        $data['title'] = 'Role Access';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $data['role'] = $this->db->get_where('user_role', ['id' => $role_id])->row_array();
-        $this->db->where('id !=', 1);
-        $data['menu'] = $this->db->get('user_menu')->result_array();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('admin/roleaccess', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function changeaccess()
-    {
-        $menu_id = $this->input->post('menuId');
-        $role_id = $this->input->post('roleId');
-
-        $data = [
-            'role_id' => $role_id,
-            'menu_id' => $menu_id
-        ];
-
-        $result = $this->db->get_where('user_access_menu', $data);
-
-        if ($result->num_rows() < 1) {
-            $this->db->insert('user_access_menu', $data);
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success" role="alert">
-                     Access granted
-                </div>'
-            );
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('admin/editmember', $data);
+            $this->load->view('templates/footer');
         } else {
-            $this->db->delete('user_access_menu', $data);
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-danger" role="alert">
-                     Access removed
-                </div>'
-            );
+            $role = $this->input->post('role_id');
+            $is_active = $this->input->post('is_active');
+
+            $this->db->set('role_id', $role);
+            $this->db->set('is_active', $is_active);
+            $this->db->where('id', $user_id);
+            $this->db->update('user');
+            redirect('admin/user');
         }
+    }
+
+    public function deleteuser($delete_user_id)
+    {
+        $this->db->delete('user', ['id' => $delete_user_id]);
+        redirect('admin/user');
     }
 }

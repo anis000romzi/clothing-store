@@ -4,9 +4,9 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-code"></i>
+            <i class="fas fa-tshirt"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">TES Admin</div>
+        <div class="sidebar-brand-text mx-3">WEB prog</div>
     </a>
 
     <!-- Divider -->
@@ -29,7 +29,7 @@
         </div>
 
         <?php
-        $querySubMenu = "SELECT * FROM `user_sub_menu` WHERE `menu_id` = {$m['id']} AND `is_active` = 1";
+        $querySubMenu = "SELECT * FROM `user_sub_menu` WHERE `menu_id` = {$m['id']}";
         $subMenu = $this->db->query($querySubMenu)->result_array();
         ?>
 

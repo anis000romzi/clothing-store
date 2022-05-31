@@ -5,14 +5,12 @@
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
     <div class="row">
         <div class="col-lg-6">
-            <?= $this->session->flashdata('message'); ?>
-            <h5>Role : <?= $role['role']; ?></h5>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Menu</th>
-                        <th scope="col">Access</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,9 +20,8 @@
                             <th scope="row"><?= $i++ ?></th>
                             <td><?= $m['menu'] ?></td>
                             <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" <?= check_access($role['id'], $m['id']); ?> data-role="<?= $role['id']; ?>" data-menu="<?= $m['id']; ?>">
-                                </div>
+                                <a href="<?= base_url('admin/submenu/') . $m['id'] ?>" class="badge badge-success">edit</a>
+                                <a href="<?= base_url('admin/deletemenu/') . $m['id'] ?>" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete this menu?');">delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

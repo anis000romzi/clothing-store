@@ -22,7 +22,6 @@
                         <th scope="col">Menu</th>
                         <th scope="col">URL</th>
                         <th scope="col">Icon</th>
-                        <th scope="col">Active</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -35,10 +34,9 @@
                             <td><?= $sm['menu'] ?></td>
                             <td><?= $sm['url'] ?></td>
                             <td><i class="<?= $sm['icon'] ?>"></i></td>
-                            <td><?= $sm['is_active'] ?></td>
                             <td>
                                 <a href="" class="badge badge-success">edit</a>
-                                <a href="" class="badge badge-danger">delete</a>
+                                <a href="<?= base_url('admin/deletesubmenu/') . $sm['id'] ?>" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete this submenu?');">delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -63,32 +61,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('menu/submenu'); ?>" method="post">
+            <form action="" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" class="form-control" id="title" name="title" placeholder="Submenu Title">
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" id="menu_id" name="menu_id">
-                            <option value="">Select Menu</option>
-                            <?php foreach ($menu as $m) : ?>
-                                <option value="<?= $m['id'] ?>"><?= $m['menu'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="url" name="url" placeholder="URL">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="icon" name="icon" placeholder="Icon">
-                    </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" value="1" id="is_active" name="is_active" checked>
-                            <label class="form-check-label" for="is_active">
-                                Active?
-                            </label>
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

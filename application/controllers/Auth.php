@@ -60,7 +60,7 @@ class Auth extends CI_Controller
                 $this->session->set_flashdata(
                     'message',
                     '<div class="alert alert-danger" role="alert">
-                         Email has not been activated
+                         Your account is inactive
                     </div>'
                 );
                 redirect('auth');
