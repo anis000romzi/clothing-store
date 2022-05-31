@@ -4,36 +4,24 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
     <div class="row">
-        <div class="col-lg-8">
-
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $i = 1;
-                    foreach ($clothing as $c) : ?>
-                        <tr>
-                            <th scope="row"><?= $i++ ?></th>
-                            <td><?= $c['name'] ?></td>
-                            <td>RP. <?= $c['price'] ?></td>
-                            <td><?= $c['type']; ?></td>
-                            <td><?= $c['stock']; ?></td>
-                            <td>
-                                <a href="<?= base_url('admin/editusers/') . $c['id'] ?>" class="badge badge-success">beli</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
+        <?php $i = 1;
+        foreach ($clothing as $c) : ?>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-danger shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <img src="<?= base_url('assets/img/clothing/') . $c['image'] ?>" class="img-fluid rounded-start" style="max-height: 200px; max-width: 200px;">
+                            </div>
+                            <div class="col ml-3">
+                                <div class="text-md font-weight-bold mb-1"><?= $c['name'] ?></div>
+                                <div class="h1 mb-0 font-weight-bold"><?= $c['price'] ?></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
 
 </div>
