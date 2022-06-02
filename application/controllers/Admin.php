@@ -48,20 +48,37 @@ class Admin extends CI_Controller
             $this->load->view('admin/item', $data);
             $this->load->view('templates/footer');
         } else {
-            $data = [
-                'name' => $this->input->post('name'),
-                'type_id' => $this->input->post('type'),
-                'price' => $this->input->post('price'),
-                'stock' => $this->input->post('stock')
-            ];
-            $this->db->insert('clothing', $data);
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success" role="alert">
-                     New item added
-                </div>'
-            );
-            redirect('admin/item');
+            $upload_image = $_FILES['userfile']['name'];
+
+            if ($upload_image) {
+                $config['upload_path'] = FCPATH . '/assets/img/clothing/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = '2048';
+
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload('userfile')) {
+                    $data = [
+                        'name' => $this->input->post('name'),
+                        'price' => $this->input->post('price'),
+                        'type_id' => $this->input->post('type'),
+                        'stock' => $this->input->post('stock'),
+                        'image' => $this->upload->data('file_name')
+                    ];
+                    $this->db->insert('clothing', $data);
+
+                    redirect('admin/item');
+                } else {
+                    $this->session->set_flashdata(
+                        'message',
+                        '<small class="text-danger">'
+                            . $this->upload->display_errors() .
+                            '</small>'
+                    );
+                    redirect('admin/item');
+                }
+            }
         }
     }
 

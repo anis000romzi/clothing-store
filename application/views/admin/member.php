@@ -26,7 +26,7 @@
                             <th scope="row"><?= $i++ ?></th>
                             <td><?= $m['name'] ?></td>
                             <td><?= $m['email'] ?></td>
-                            <td><img class="img-thumbnail rounded-circle" style="max-height: 50px; max-width: 50px;" src="<?= base_url('assets/img/profile/') . $m['image']; ?>"></td>
+                            <td><img class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;" src="<?= base_url('assets/img/profile/') . $m['image']; ?>"></td>
                             <td><?= $m['role'] ?></td>
                             <td><?php if ($m['is_active'] == 1) : echo 'Active' ?>
                                 <?php else : echo 'Inactive' ?>

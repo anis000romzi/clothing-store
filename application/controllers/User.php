@@ -12,18 +12,6 @@ class User extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'My Profile';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('user/index', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function home()
-    {
         $data['title'] = 'Home';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->model('Admin_model', 'admin');
@@ -33,9 +21,22 @@ class User extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('user/home', $data);
+        $this->load->view('user/index', $data);
         $this->load->view('templates/footer');
     }
+
+    public function profile()
+    {
+        $data['title'] = 'My Profile';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/profile', $data);
+        $this->load->view('templates/footer');
+    }
+
 
     public function edit()
     {
@@ -92,7 +93,7 @@ class User extends CI_Controller
                      Profile updated
                 </div>'
             );
-            redirect('user');
+            redirect('user/profile');
         }
     }
 

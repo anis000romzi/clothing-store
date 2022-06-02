@@ -3,26 +3,26 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
-
     <div class="row">
-        <div class="col-lg-6">
-            <?= $this->session->flashdata('message'); ?>
-        </div>
-    </div>
-
-    <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="img-fluid rounded-start" alt="Profile Picture">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title"><?= $user['name']; ?></h5>
-                    <p class="card-text"><?= $user['email']; ?></p>
-                    <p class="card-text"><small class="text-muted">Joined <?= date('d F Y', $user['date_created']); ?></small></p>
+        <?php $i = 1;
+        foreach ($clothing as $c) : ?>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-<?= check_category($c['type_id']); ?> shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <img src="<?= base_url('assets/img/clothing/') . $c['image'] ?>" class="img-fluid rounded-start" style="max-height: 200px; max-width: 200px;">
+                            </div>
+                            <div class="col ml-3">
+                                <div class="text-md font-weight-bold mb-1"><?= $c['name'] ?></div>
+                                <div class="h3 mb-0 font-weight-bold">Rp. <?= number_format($c['price']) ?></div>
+                                <a href="" class="btn btn-<?= check_category($c['type_id']); ?> mt-2">Detail</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 
 </div>

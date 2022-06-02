@@ -5,6 +5,7 @@
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
     <div class="row">
         <div class="col-lg-8">
+            <?= $this->session->flashdata('message'); ?>
             <?php if (validation_errors()) : ?>
                 <div class="alert alert-danger" role="alert">
                     <?= validation_errors(); ?>
@@ -28,7 +29,7 @@
                         <tr>
                             <th scope="row"><?= $i++ ?></th>
                             <td><?= $c['name'] ?></td>
-                            <td>RP. <?= $c['price'] ?></td>
+                            <td>RP. <?= number_format($c['price']); ?></td>
                             <td><?= $c['type']; ?></td>
                             <td><?= $c['stock']; ?></td>
                             <td>
@@ -58,33 +59,39 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('admin/item'); ?>" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name">
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" id="type" name="type">
-                            <option value="">Select Type</option>
-                            <?php foreach ($type as $t) : ?>
-                                <option value="<?= $t['id'] ?>"><?= $t['type'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="price">Price</label>
-                        <input type="number" class="form-control" id="price" name="price">
-                    </div>
-                    <div class="form-group">
-                        <label for="stock">Stock</label>
-                        <input type="number" class="form-control" id="stock" name="stock">
+            <?= form_open_multipart('admin/item'); ?>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="type" name="type">
+                        <option value="">Select Type</option>
+                        <?php foreach ($type as $t) : ?>
+                            <option value="<?= $t['id'] ?>"><?= $t['type'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" id="price" name="price">
+                </div>
+                <div class="form-group">
+                    <label for="stock">Stock</label>
+                    <input type="number" class="form-control" id="stock" name="stock">
+                </div>
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="userfile" name="userfile">
+                        <label for="userfile" class="custom-file-label">Choose File</label>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
             </form>
         </div>
     </div>

@@ -19,3 +19,16 @@ function is_logged_in()
         }
     }
 }
+
+function check_category($type_id)
+{
+    if ($type_id == 1) {
+        return "success";
+    } else if ($type_id == 2) {
+        return "danger";
+    } else if ($type_id == 3) {
+        return "primary";
+    } else if ($type_id == 4) {
+        return "warning";
+    }
+}
