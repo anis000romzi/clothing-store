@@ -16,8 +16,12 @@ class Admin extends CI_Controller
         $data['title'] = 'Overview';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['member'] = $this->admin->getUser();
         $data['clothing'] = $this->admin->getClothing();
+        $data['member'] = $this->admin->getUser();
+        if ($this->input->post('search')) {
+            $data['member'] = $this->admin->getSearchUser();
+            $data['clothing'] = $this->admin->getSearchClothing();
+        }
         $data['num_user'] = $this->db->get('user')->num_rows();
         $data['num_item'] = $this->db->get('clothing')->num_rows();
 
@@ -34,6 +38,9 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['clothing'] = $this->admin->getClothing();
+        if ($this->input->post('search')) {
+            $data['clothing'] = $this->admin->getSearchClothing();
+        }
         $data['type'] = $this->db->get('type')->result_array();
 
         $this->form_validation->set_rules('name', 'Name', 'required');
@@ -127,6 +134,9 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['member'] = $this->admin->getUserById($data['user']['id']);
+        if ($this->input->post('search')) {
+            $data['member'] = $this->admin->getSearchUserById($data['user']['id']);
+        }
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

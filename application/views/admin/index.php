@@ -45,61 +45,66 @@
     </ul>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Date Joined</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $i = 1;
-                    foreach ($member as $m) : ?>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <th scope="row"><?= $i++ ?></th>
-                            <td><?= $m['name'] ?></td>
-                            <td><?= $m['email']; ?></td>
-                            <td><img class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;" src="<?= base_url('assets/img/profile/') . $m['image']; ?>"></td>
-                            <td><?= $m['role']; ?></td>
-                            <td><?php if ($m['is_active'] == 1) : echo 'Active' ?>
-                                <?php else : echo 'Inactive' ?>
-                                <?php endif; ?>
-                            </td>
-                            <td><?= date('d F Y', $m['date_created']) ?></td>
+                            <th scope="col">#</th>
+                            <th scope="col"></th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Date Joined</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1;
+                        foreach ($member as $m) : ?>
+                            <tr>
+                                <th scope="row"><?= $i++ ?></th>
+                                <td><img class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;" src="<?= base_url('assets/img/profile/') . $m['image']; ?>"></td>
+                                <td><?= $m['name'] ?></td>
+                                <td><?= $m['email']; ?></td>
+                                <td><?= $m['role']; ?></td>
+                                <td><?php if ($m['is_active'] == 1) : echo 'Active' ?>
+                                    <?php else : echo 'Inactive' ?>
+                                    <?php endif; ?>
+                                </td>
+                                <td><?= date('d F Y', $m['date_created']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Stock</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $i = 1;
-                    foreach ($clothing as $c) : ?>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <th scope="row"><?= $i++ ?></th>
-                            <td><?= $c['name'] ?></td>
-                            <td>RP. <?= number_format($c['price']) ?></td>
-                            <td><?= $c['type']; ?></td>
-                            <td><?= $c['stock']; ?></td>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Stock</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1;
+                        foreach ($clothing as $c) : ?>
+                            <tr>
+                                <th scope="row"><?= $i++ ?></th>
+                                <td><?= $c['name'] ?></td>
+                                <td>RP. <?= number_format($c['price']) ?></td>
+                                <td><?= $c['type']; ?></td>
+                                <td><?= $c['stock']; ?></td>
+                                <td><img style="width: 50px; height: 50px; object-fit: cover;" src="<?= base_url('assets/img/clothing/') . $c['image']; ?>"></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

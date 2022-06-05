@@ -11,35 +11,37 @@
                     <?= validation_errors(); ?>
                 </div>
             <?php endif; ?>
-            <table class="table table-hover">
-                <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">Add New Item</a>
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $i = 1;
-                    foreach ($clothing as $c) : ?>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">Add New Item</a>
+                    <thead>
                         <tr>
-                            <th scope="row"><?= $i++ ?></th>
-                            <td><?= $c['name'] ?></td>
-                            <td>RP. <?= number_format($c['price']); ?></td>
-                            <td><?= $c['type']; ?></td>
-                            <td><?= $c['stock']; ?></td>
-                            <td>
-                                <a href="<?= base_url('admin/edititem/') . $c['id'] ?>" class="badge badge-success">edit</a>
-                                <a href="<?= base_url('admin/deleteitem/') . $c['id'] ?>" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete this item?');">delete</a>
-                            </td>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Action</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1;
+                        foreach ($clothing as $c) : ?>
+                            <tr>
+                                <th scope="row"><?= $i++ ?></th>
+                                <td><?= $c['name'] ?></td>
+                                <td>RP. <?= number_format($c['price']); ?></td>
+                                <td><?= $c['type']; ?></td>
+                                <td><?= $c['stock']; ?></td>
+                                <td>
+                                    <a href="<?= base_url('admin/edititem/') . $c['id'] ?>" class="badge badge-success">edit</a>
+                                    <a href="<?= base_url('admin/deleteitem/') . $c['id'] ?>" class="badge badge-danger" onclick="return confirm('Are you sure you want to delete this item?');">delete</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

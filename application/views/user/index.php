@@ -3,15 +3,15 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
+
     <div class="row">
-        <?php $i = 1;
-        foreach ($clothing as $c) : ?>
+        <?php foreach ($clothing as $c) : ?>
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-<?= check_category($c['type_id']); ?> shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <img src="<?= base_url('assets/img/clothing/') . $c['image'] ?>" class="img-fluid rounded-start" style="max-height: 200px; max-width: 200px;">
+                                <img src="<?= base_url('assets/img/clothing/') . $c['image'] ?>" style="height: 200px; width: 200px; object-fit: cover;">
                             </div>
                             <div class="col ml-3">
                                 <div class="text-md font-weight-bold mb-1"><?= $c['name'] ?></div>

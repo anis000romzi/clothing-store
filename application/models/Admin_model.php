@@ -24,6 +24,28 @@ class Admin_model extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function getSearchUser()
+    {
+        $search = $this->input->post('search');
+        $query = "SELECT `user`.*, `user_role`.`role` 
+                    FROM `user` JOIN `user_role`
+                      ON `user`.`role_id` = `user_role`.`id`
+                   WHERE `user`.`name` LIKE '%$search%'";
+
+        return $this->db->query($query)->result_array();
+    }
+
+    public function getSearchUserById($user_id)
+    {
+        $search = $this->input->post('search');
+        $query = "SELECT `user`.*, `user_role`.`role` 
+                    FROM `user` JOIN `user_role`
+                      ON `user`.`role_id` = `user_role`.`id`
+                   WHERE `user`.`name` LIKE '%$search%' AND `user`.`id` != $user_id";
+
+        return $this->db->query($query)->result_array();
+    }
+
     public function getClothing()
     {
         $query = "SELECT `clothing`.*, `type`.`type` 
@@ -42,5 +64,16 @@ class Admin_model extends CI_Model
                    WHERE `clothing`.`id` = $item_id";
 
         return $this->db->query($query)->row_array();
+    }
+
+    public function getSearchClothing()
+    {
+        $search = $this->input->post('search');
+        $query = "SELECT `clothing`.*, `type`.`type` 
+                    FROM `clothing` JOIN `type`
+                      ON `clothing`.`type_id` = `type`.`id`
+                   WHERE `clothing`.`name` LIKE '%$search%' OR `type`.`type` LIKE '$search%'";
+
+        return $this->db->query($query)->result_array();
     }
 }

@@ -17,7 +17,9 @@ class User extends CI_Controller
         $this->load->model('Admin_model', 'admin');
 
         $data['clothing'] = $this->admin->getClothing();
-
+        if ($this->input->post('search')) {
+            $data['clothing'] = $this->admin->getSearchClothing();
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
