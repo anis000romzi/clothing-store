@@ -14,7 +14,7 @@ class Admin_model extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-    public function getUserById($user_id)
+    public function getUserButCurrentUser($user_id)
     {
         $query = "SELECT `user`.*, `user_role`.`role` 
                     FROM `user` JOIN `user_role`
@@ -22,6 +22,16 @@ class Admin_model extends CI_Model
                    WHERE `user`.`id` != $user_id";
 
         return $this->db->query($query)->result_array();
+    }
+
+    public function getUserById($user_id)
+    {
+        $query = "SELECT `user`.*, `user_role`.`role` 
+                    FROM `user` JOIN `user_role`
+                      ON `user`.`role_id` = `user_role`.`id`
+                   WHERE `user`.`id` = $user_id";
+
+        return $this->db->query($query)->row_array();
     }
 
     public function getSearchUser()

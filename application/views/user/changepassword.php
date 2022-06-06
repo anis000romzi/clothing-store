@@ -23,7 +23,7 @@
                     <?= form_error('new-password2', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Change Password</button>
+                    <button type="submit" class="btn" id="btn-confirm">Change Password</button>
                 </div>
             </form>
         </div>

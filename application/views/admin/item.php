@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-10">
             <?= $this->session->flashdata('message'); ?>
             <?php if (validation_errors()) : ?>
                 <div class="alert alert-danger" role="alert">
@@ -13,10 +13,11 @@
             <?php endif; ?>
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">Add New Item</a>
+                    <a href="" class="btn mb-3 ml-3 mt-3" id="btn-modal" data-toggle="modal" data-target="#exampleModal">Add New Item</a>
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col"></th>
                             <th scope="col">Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Type</th>
@@ -29,6 +30,7 @@
                         foreach ($clothing as $c) : ?>
                             <tr>
                                 <th scope="row"><?= $i++ ?></th>
+                                <td><img id="img-clothing" src="<?= base_url('assets/img/clothing/') . $c['image']; ?>"></td>
                                 <td><?= $c['name'] ?></td>
                                 <td>RP. <?= number_format($c['price']); ?></td>
                                 <td><?= $c['type']; ?></td>
@@ -92,7 +94,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn" id="btn-confirm">Add</button>
             </div>
             </form>
         </div>

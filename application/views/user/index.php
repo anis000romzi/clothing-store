@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <img src="<?= base_url('assets/img/clothing/') . $c['image'] ?>" style="height: 200px; width: 200px; object-fit: cover;">
+                                <img src="<?= base_url('assets/img/clothing/') . $c['image'] ?>" id="img-display">
                             </div>
                             <div class="col ml-3">
                                 <div class="text-md font-weight-bold mb-1"><?= $c['name'] ?></div>

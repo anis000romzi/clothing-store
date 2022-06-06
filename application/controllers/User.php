@@ -13,6 +13,12 @@ class User extends CI_Controller
     public function index()
     {
         $data['title'] = 'Home';
+        $data['search'] = '<input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn" type="submit" id="btn-search">
+                <i class="fas fa-search fa-sm text-white"></i>
+            </button>
+        </div>';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->model('Admin_model', 'admin');
 
@@ -30,6 +36,7 @@ class User extends CI_Controller
     public function profile()
     {
         $data['title'] = 'My Profile';
+        $data['search'] = '';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
@@ -43,6 +50,7 @@ class User extends CI_Controller
     public function edit()
     {
         $data['title'] = 'Edit Profile';
+        $data['search'] = '';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
@@ -60,11 +68,12 @@ class User extends CI_Controller
             $upload_image = $_FILES['image']['name'];
 
             if ($upload_image) {
-                $config['upload_path'] = './assets/img/profile/';
+                $config['upload_path'] = FCPATH . '/assets/img/profile/';
                 $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size']     = '2048';
+                $config['max_size'] = '2048';
 
                 $this->load->library('upload', $config);
+                $this->upload->initialize($config);
 
                 if ($this->upload->do_upload('image')) {
                     $old_image = $data['user']['image'];
@@ -102,6 +111,7 @@ class User extends CI_Controller
     public function changepassword()
     {
         $data['title'] = 'Change Password';
+        $data['search'] = '';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('current-password', 'Current Password', 'required|trim');

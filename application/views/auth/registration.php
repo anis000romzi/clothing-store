@@ -20,14 +20,20 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="password" class="form-control form-control-user" id="password1" name="password1" placeholder="Password">
+                                    <input type="password" class="form-control form-control-user pass" id="password1" name="password1" placeholder="Password">
                                     <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Confirm Password">
                                 </div>
                             </div>
-                            <button type="sumbit" class="btn btn-primary btn-user btn-block">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox small">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" onclick="showConfirmPassword()">
+                                    <label class="custom-control-label" for="customCheck">Show Password</label>
+                                </div>
+                            </div>
+                            <button type="sumbit" class="btn text-white btn-user btn-block" style="background-color: orange;">
                                 Register Account
                             </button>
                             <!-- <hr>

@@ -1,16 +1,16 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-white sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-tshirt"></i>
+            <i class="fas fa-tshirt text-dark"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">WEB prog</div>
+        <div class="sidebar-brand-text mx-3 text-dark">CLOTHING STORE</div>
     </a>
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
+    <hr class="sidebar-divider bg-secondary">
 
     <?php
     $role_id = $this->session->userdata('role_id');
@@ -24,7 +24,7 @@
 
     <!-- Heading -->
     <?php foreach ($menu as $m) : ?>
-        <div class="sidebar-heading">
+        <div class="sidebar-heading text-dark">
             <?= $m['menu']; ?>
         </div>
 
@@ -40,28 +40,27 @@
                 <?php else : ?>
                 <li class="nav-item">
                 <?php endif; ?>
-                <a class="nav-link pb-0" href="<?= base_url($sm['url']); ?>">
-                    <i class="<?= $sm['icon']; ?>"></i>
+                <a class="nav-link pb-0 text-dark" href="<?= base_url($sm['url']); ?>">
+                    <i class="<?= $sm['icon']; ?> text-dark"></i>
                     <span><?= $sm['title']; ?></span></a>
                 </li>
             <?php endforeach; ?>
             <!-- Divider -->
-            <hr class="sidebar-divider mt-3">
+            <hr class="sidebar-divider mt-3 bg-white">
         <?php endforeach; ?>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('auth/logout'); ?>">
-                <i class="fas fa-fw fa-sign-out-alt"></i>
+            <a class="nav-link  text-dark" href="<?= base_url('auth/logout'); ?>">
+                <i class="fas fa-fw fa-sign-out-alt text-dark"></i>
                 <span>Logout</span></a>
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
+        <hr class="sidebar-divider d-none d-md-block bg-white">
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            <button class="rounded-circle border-0 bg-dark" id="sidebarToggle"></button>
         </div>
-
 </ul>
 <!-- End of Sidebar -->

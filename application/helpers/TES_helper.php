@@ -27,7 +27,7 @@ function check_category($type_id)
     } else if ($type_id == 2) {
         return "danger";
     } else if ($type_id == 3) {
-        return "primary";
+        return "info";
     } else if ($type_id == 4) {
         return "warning";
     }

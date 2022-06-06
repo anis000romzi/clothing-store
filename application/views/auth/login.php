@@ -25,14 +25,13 @@
                                         <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
                                         <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
-                                    <!-- <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                       </div> -->
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox small">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck" onclick="showPassword()">
+                                            <label class="custom-control-label" for="customCheck">Show Password</label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn text-white btn-user btn-block" style="background-color: orange;">
                                         Login
                                     </button>
                                     <!-- <hr>

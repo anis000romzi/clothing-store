@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="col-xl-6 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col-auto">
@@ -46,7 +46,7 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover borderless">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -63,7 +63,7 @@
                         foreach ($member as $m) : ?>
                             <tr>
                                 <th scope="row"><?= $i++ ?></th>
-                                <td><img class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;" src="<?= base_url('assets/img/profile/') . $m['image']; ?>"></td>
+                                <td><img class="rounded-circle" id="img-profile" src="<?= base_url('assets/img/profile/') . $m['image']; ?>"></td>
                                 <td><?= $m['name'] ?></td>
                                 <td><?= $m['email']; ?></td>
                                 <td><?= $m['role']; ?></td>
@@ -84,6 +84,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col"></th>
                             <th scope="col">Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Type</th>
@@ -95,11 +96,11 @@
                         foreach ($clothing as $c) : ?>
                             <tr>
                                 <th scope="row"><?= $i++ ?></th>
+                                <td><img id="img-clothing" src="<?= base_url('assets/img/clothing/') . $c['image']; ?>"></td>
                                 <td><?= $c['name'] ?></td>
                                 <td>RP. <?= number_format($c['price']) ?></td>
                                 <td><?= $c['type']; ?></td>
                                 <td><?= $c['stock']; ?></td>
-                                <td><img style="width: 50px; height: 50px; object-fit: cover;" src="<?= base_url('assets/img/clothing/') . $c['image']; ?>"></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
