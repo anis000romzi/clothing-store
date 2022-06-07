@@ -6,6 +6,7 @@ class User extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Admin_model', 'admin');
         $this->load->library('form_validation');
         is_logged_in();
     }
@@ -20,7 +21,6 @@ class User extends CI_Controller
             </button>
         </div>';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $this->load->model('Admin_model', 'admin');
 
         $data['clothing'] = $this->admin->getClothing();
         if ($this->input->post('search')) {
@@ -30,6 +30,20 @@ class User extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('user/index', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function detail($item_id)
+    {
+        $data['title'] = 'Detail';
+        $data['search'] = '';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['clothing'] = $this->admin->getClothingById($item_id);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/detail', $data);
         $this->load->view('templates/footer');
     }
 
