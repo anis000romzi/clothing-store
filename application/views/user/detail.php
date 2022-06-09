@@ -4,8 +4,9 @@
     <!-- Page Heading -->
     <h3 class="mb-4 text-gray-800"><?= $title; ?></h3>
     <div class="row">
-        <div>
+        <div class="wrap">
             <img class="img-thumbnail mr-3 border border-<?= check_category($clothing['type_id']); ?>" id="img-detail" style="max-width: 300px; border-width:3px !important;" src="<?= base_url('assets/img/clothing/') . $clothing['image']; ?>">
+            <?= check_stock_img($clothing['stock']) ?>
         </div>
         <div class="col-lg-8">
             <h1 class="text-dark"><strong><?= $clothing['name'] ?></strong><small> - <?= $clothing['type'] ?></small></h1>
@@ -34,7 +35,7 @@
             <div class="form-group row">
                 <label for="qty" class="col-sm-1 col-form-label mr-3">Quantity</label>
                 <div class="col-sm-2">
-                    <input type="number" class="form-control" id="qty" name="qty">
+                    <input type="number" min="0" class="form-control" id="qty" name="qty">
                 </div>
             </div>
             <div class="form-group row">

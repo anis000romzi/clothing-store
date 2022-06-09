@@ -11,7 +11,10 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <img src="<?= base_url('assets/img/clothing/') . $c['image'] ?>" id="img-display">
+                                <div class="wrap">
+                                    <img src="<?= base_url('assets/img/clothing/') . $c['image'] ?>" id="img-display">
+                                    <?= check_stock_img($c['stock']) ?>
+                                </div>
                             </div>
                             <div class="col ml-3">
                                 <div class="text-md font-weight-bold mb-1"><?= $c['name'] ?></div>

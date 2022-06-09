@@ -14,12 +14,6 @@ class User extends CI_Controller
     public function index()
     {
         $data['title'] = 'Home';
-        $data['search'] = '<input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-            <button class="btn" type="submit" id="btn-search">
-                <i class="fas fa-search fa-sm text-white"></i>
-            </button>
-        </div>';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['clothing'] = $this->admin->getClothing();
@@ -36,7 +30,6 @@ class User extends CI_Controller
     public function detail($item_id)
     {
         $data['title'] = 'Detail';
-        $data['search'] = '';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['clothing'] = $this->admin->getClothingById($item_id);
@@ -50,7 +43,6 @@ class User extends CI_Controller
     public function profile()
     {
         $data['title'] = 'My Profile';
-        $data['search'] = '';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
@@ -64,7 +56,6 @@ class User extends CI_Controller
     public function edit()
     {
         $data['title'] = 'Edit Profile';
-        $data['search'] = '';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
@@ -125,7 +116,6 @@ class User extends CI_Controller
     public function changepassword()
     {
         $data['title'] = 'Change Password';
-        $data['search'] = '';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('current-password', 'Current Password', 'required|trim');

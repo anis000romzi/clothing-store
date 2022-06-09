@@ -23,6 +23,12 @@
                     <?= form_error('new-password2', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck" onclick="showChangePassword()">
+                        <label class="custom-control-label" for="customCheck">Show Password</label>
+                    </div>
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn" id="btn-confirm">Change Password</button>
                 </div>
             </form>

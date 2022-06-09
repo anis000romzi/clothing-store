@@ -17,7 +17,7 @@
             <div class="form-group row">
                 <label for="price" class="col-sm-2 col-form-label">Price</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="price" name="price" value="<?= $clothing['price'] ?>">
+                    <input type="number" min="0" class="form-control" id="price" name="price" value="<?= $clothing['price'] ?>">
                 </div>
             </div>
             <div class="form-group row">
@@ -38,7 +38,7 @@
             <div class="form-group row">
                 <label for="stock" class="col-sm-2 col-form-label">Stock</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="stock" name="stock" value="<?= $clothing['stock'] ?>">
+                    <input type="number" min="0" class="form-control" id="stock" name="stock" value="<?= $clothing['stock'] ?>">
                 </div>
             </div>
             <div class="form-group row">

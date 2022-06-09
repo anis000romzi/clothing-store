@@ -14,12 +14,6 @@ class Admin extends CI_Controller
     public function index()
     {
         $data['title'] = 'Overview';
-        $data['search'] = '<input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-            <button class="btn text-white" type="submit" id="btn-search">
-                <i class="fas fa-search fa-sm"></i>
-            </button>
-        </div>';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['clothing'] = $this->admin->getClothing();
@@ -41,12 +35,6 @@ class Admin extends CI_Controller
     public function item()
     {
         $data['title'] = 'Item Management';
-        $data['search'] = '<input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-            <button class="btn text-white" type="submit" id="btn-search">
-                <i class="fas fa-search fa-sm"></i>
-            </button>
-        </div>';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['clothing'] = $this->admin->getClothing();
@@ -104,7 +92,6 @@ class Admin extends CI_Controller
     public function edititem($item_id)
     {
         $data['title'] = 'Edit Item';
-        $data['search'] = '';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['clothing'] = $this->admin->getClothingById($item_id);
@@ -122,6 +109,10 @@ class Admin extends CI_Controller
             $this->load->view('admin/edititem', $data);
             $this->load->view('templates/footer');
         } else {
+            $name = $this->input->post('name');
+            $price = $this->input->post('price');
+            $type_id = $this->input->post('type');
+            $stock = $this->input->post('stock');
             $upload_image = $_FILES['editfile']['name'];
 
             if ($upload_image) {
@@ -135,17 +126,8 @@ class Admin extends CI_Controller
                 if ($this->upload->do_upload('editfile')) {
                     $old_image = $data['clothing']['image'];
                     unlink(FCPATH . 'assets/img/clothing/' . $old_image);
-                    $data = [
-                        'name' => $this->input->post('name'),
-                        'price' => $this->input->post('price'),
-                        'type_id' => $this->input->post('type'),
-                        'stock' => $this->input->post('stock'),
-                        'image' => $this->upload->data('file_name')
-                    ];
-
-                    $this->db->where('id', $item_id);
-                    $this->db->update('clothing', $data);
-                    redirect('admin/item');
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
                 } else {
                     $this->session->set_flashdata(
                         'message',
@@ -153,9 +135,16 @@ class Admin extends CI_Controller
                             . $this->upload->display_errors() .
                             '</small>'
                     );
-                    redirect('admin/edit');
+                    redirect('admin/item');
                 }
             }
+            $this->db->set('name', $name);
+            $this->db->set('price', $price);
+            $this->db->set('type_id', $type_id);
+            $this->db->set('stock', $stock);
+            $this->db->where('id', $item_id);
+            $this->db->update('clothing');
+            redirect('admin/item');
         }
     }
 
@@ -168,12 +157,6 @@ class Admin extends CI_Controller
     public function user()
     {
         $data['title'] = 'User Management';
-        $data['search'] = '<input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-            <button class="btn text-white" type="submit" id="btn-search">
-                <i class="fas fa-search fa-sm"></i>
-            </button>
-        </div>';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['member'] = $this->admin->getUserButCurrentUser($data['user']['id']);
@@ -191,7 +174,6 @@ class Admin extends CI_Controller
     public function editusers($user_id)
     {
         $data['title'] = 'Edit User';
-        $data['search'] = '';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['member'] = $this->admin->getUserById($user_id);

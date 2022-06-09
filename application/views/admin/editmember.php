@@ -5,7 +5,9 @@
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?>: <strong><?= $member['name']; ?></strong></h1>
 
     <div class="row">
-        <img class="img-thumbnail mr-3" style="max-width: 250px;" src="<?= base_url('assets/img/profile/') . $member['image']; ?>">
+        <div>
+            <img class="img-thumbnail mr-3" style="max-width: 250px;" src="<?= base_url('assets/img/profile/') . $member['image']; ?>">
+        </div>
         <div class="col-lg-4">
             <form action="" method="post">
                 <div class="form-group row">

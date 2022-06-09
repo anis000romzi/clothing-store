@@ -32,3 +32,12 @@ function check_category($type_id)
         return "warning";
     }
 }
+
+function check_stock_img($stock)
+{
+    if ($stock == 0) {
+        return "<div class='text'><strong>OUT OF STOCK</strong></div>";
+    } else {
+        return "";
+    }
+}
