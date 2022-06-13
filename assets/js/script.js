@@ -37,6 +37,29 @@ function showChangePassword() {
 	}
 }
 
+function multiplyBy() {
+	num1 = document.getElementById("harga").getAttribute("data-value");
+	num2 = document.getElementById("qty").value;
+	total = num1 * num2;
+	result = total.toLocaleString("id-ID", {
+		style: "currency",
+		currency: "IDR",
+	});
+	document.getElementById("total").innerHTML = result;
+}
+
+document.getElementById("qty").addEventListener("input", (e) => {
+	document.getElementById("amount").innerHTML = e.target.value;
+});
+
+if (document.querySelector('input[name="exampleRadios"]')) {
+	document.querySelectorAll('input[name="exampleRadios"]').forEach((elem) => {
+		elem.addEventListener("change", (e) => {
+			document.getElementById("ukuran").innerHTML = e.target.value;
+		});
+	});
+}
+
 $(".custom-file-input").on("change", function () {
 	let fileName = $(this).val().split("\\").pop();
 	$(this).next(".custom-file-label").addClass("selected").html(fileName);

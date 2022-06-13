@@ -41,3 +41,12 @@ function check_stock_img($stock)
         return "";
     }
 }
+
+function check_stock_button($stock)
+{
+    if ($stock == 0) {
+        return "";
+    } else {
+        return "href='http://localhost:8080/clothing-store/user/detail/";
+    }
+}

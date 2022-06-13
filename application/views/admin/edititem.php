@@ -49,7 +49,7 @@
                             <img src="<?= base_url('assets/img/clothing/') . $clothing['image']; ?>" class="img-thumbnail">
                         </div>
                         <div class="col-sm-9">
-                            <div class="custom-file">
+                            <div class="custom-file mt-3">
                                 <input type="file" class="custom-file-input" id="editfile" name="editfile">
                                 <label for="image" class="custom-file-label">Choose File</label>
                                 <?= $this->session->flashdata('message'); ?>

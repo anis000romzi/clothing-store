@@ -11,7 +11,7 @@
         <div class="col-lg-4">
             <form action="" method="post">
                 <div class="form-group row">
-                    <input type="text" class="form-control" id="email" name="email" value="<?= $member['email'] ?>" readonly>
+                    <input type="text" class="form-control mt-3" id="email" name="email" value="<?= $member['email'] ?>" readonly>
                 </div>
                 <div class="form-group row">
                     <select class="form-control" id="role_id" name="role_id">

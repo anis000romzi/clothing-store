@@ -26,7 +26,7 @@
                                 <th scope="row"><?= $i++ ?></th>
                                 <td><img id="img-clothing" src="<?= base_url('assets/img/clothing/') . $c['image']; ?>"></td>
                                 <td><?= $c['name'] ?></td>
-                                <td>RP. <?= number_format($c['price']); ?></td>
+                                <td>Rp. <?= number_format($c['price']); ?></td>
                                 <td><?= $c['type']; ?></td>
                                 <td><?= $c['stock']; ?></td>
                                 <td>

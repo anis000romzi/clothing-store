@@ -6,12 +6,29 @@
 }
 ::-webkit-scrollbar-thumb {
     background-color: #CFCFCF;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 body {
     padding-top: 70px;
 }
+
+/*.accordion{
+    position: fixed;
+    z-index: 999;
+    width:600px;
+    overflow-y: scroll;
+    height: calc(100% - 64px);
+    margin: 0px 0 405px 0;
+}*/
+
+/*@media(min-width:768px) {
+    #content-wrapper {
+        position: inherit;
+        margin: 0 0 0 250px;
+        padding: 52px 0 0 0;
+    }
+}*/
 
 .table-hover > thead > tr > th {
     border: none;

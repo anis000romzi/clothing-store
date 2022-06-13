@@ -19,7 +19,7 @@
                             <div class="col ml-3">
                                 <div class="text-md font-weight-bold mb-1"><?= $c['name'] ?></div>
                                 <div class="h3 mb-0 font-weight-bold">Rp. <?= number_format($c['price']) ?></div>
-                                <a href="<?= base_url('user/detail/') . $c['id'] ?>" class="btn btn-<?= check_category($c['type_id']); ?> mt-2">Detail</a>
+                                <a <?= check_stock_button($c['stock']) . $c['id'] . "'" ?> class="btn btn-<?= check_category($c['type_id']); ?> mt-2">Detail</a>
                             </div>
                         </div>
                     </div>
