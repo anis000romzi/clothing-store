@@ -2,15 +2,16 @@
 <ul class="navbar-nav bg-gradient-white sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
-        <div class="sidebar-brand-icon rotate-n-15">
+    <a class="sidebar-brand align-items-center justify-content-center" href="">
+        <!-- <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-tshirt text-dark"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3 text-dark">CLOTHING STORE</div>
+        </div> -->
+        <div class="sidebar-brand-text h1 mx-3 text-dark">VARRA</div>
+        <div class="sidebar-brand-text h6 ml-1 text-dark">CLOTHING STORE</div>
     </a>
 
     <!-- Divider -->
-    <hr class="sidebar-divider bg-secondary">
+    <hr class="mt-4 sidebar-divider bg-secondary">
 
     <?php
     $role_id = $this->session->userdata('role_id');
