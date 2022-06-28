@@ -30,12 +30,18 @@ body {
     }
 }*/
 
+@media(max-width:575px) {
+    .additem {
+        margin-top: 10px;
+    }
+}
+
 .table-hover > thead > tr > th {
     border: none;
 }
 
 .fa-bars{
-    color: orange;
+    color: rgb(194, 161, 101);
 }
 
 .wrap {

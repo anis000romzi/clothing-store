@@ -3,8 +3,19 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
+    <!-- Search -->
+    <form action="" method="POST" class="form-inline">
+        <div class=" input-group">
+            <input type="text" name="search" class="form-control bg-white border-0 small shadow" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn" type="submit" id="btn-search">
+                    <i class="fas fa-search fa-sm text-white"></i>
+                </button>
+            </div>
+        </div>
+    </form>
 
-    <div class="row">
+    <div class="row mt-3">
         <?php foreach ($clothing as $c) : ?>
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-<?= check_category($c['type_id']); ?> shadow h-100 py-2">

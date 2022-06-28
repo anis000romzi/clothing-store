@@ -1,17 +1,8 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-white sidebar sidebar-dark accordion" id="accordionSidebar">
-
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand align-items-center justify-content-center" href="">
-        <!-- <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-tshirt text-dark"></i>
-        </div> -->
-        <div class="sidebar-brand-text h1 mx-3 text-dark">VARRA</div>
-        <div class="sidebar-brand-text h6 ml-1 text-dark">CLOTHING STORE</div>
-    </a>
+<div class="navbar-nav bg-gradient-white sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Divider -->
-    <hr class="mt-4 sidebar-divider bg-secondary">
+    <hr class="sidebar-divider mt-3 bg-white">
 
     <?php
     $role_id = $this->session->userdata('role_id');
@@ -63,5 +54,5 @@
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0 bg-dark" id="sidebarToggle"></button>
         </div>
-</ul>
+</div>
 <!-- End of Sidebar -->

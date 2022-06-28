@@ -12,7 +12,7 @@
                 <i class="fa fa-bars"></i>
             </button>
 
-            <!-- Topbar Search -->
+            <!-- Topbar Search 
             <form action="" method="POST" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
                     <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -22,17 +22,21 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form> -->
+
+            <h1 class="mb-0 mx-3 text-dark">VARRA</h1>
+            <div class="ml-0 mr-3 topbar-divider d-none d-sm-block"></div>
+            <h6 class="mb-0 text-dark">CLOTHING STORE</h6>
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
 
-                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                <!-- Nav Item - Search Dropdown (Visible Only XS) 
                 <li class="nav-item dropdown no-arrow d-sm-none">
                     <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-search fa-fw"></i>
                     </a>
-                    <!-- Dropdown - Messages -->
+                     Dropdown - Messages 
                     <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                         <form action="" method="POST" class="form-inline mr-auto w-100 navbar-search">
                             <div class="input-group">
@@ -45,9 +49,7 @@
                             </div>
                         </form>
                     </div>
-                </li>
-
-                <div class="topbar-divider d-none d-sm-block"></div>
+                </li>-->
 
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">

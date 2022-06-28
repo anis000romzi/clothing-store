@@ -3,11 +3,23 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
-    <div class="row">
+    <!-- Search -->
+    <form action="" method="POST" class="form-inline">
+        <div class=" input-group">
+            <input type="text" name="search" class="form-control bg-white border-0 small shadow" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn" type="submit" id="btn-search">
+                    <i class="fas fa-search fa-sm text-white"></i>
+                </button>
+            </div>
+        </div>
+        <a href="" class="btn ml-3 additem" id="btn-modal" data-toggle="modal" data-target="#exampleModal">Add New Item</a>
+    </form>
+    <div class="row mt-3">
         <div class="col-lg-10">
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <a href="" class="btn mb-3 ml-3 mt-3" id="btn-modal" data-toggle="modal" data-target="#exampleModal">Add New Item</a>
+
                     <thead>
                         <tr>
                             <th scope="col">#</th>
